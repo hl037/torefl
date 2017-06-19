@@ -1,8 +1,11 @@
-# TOREFL
+======
+TOREFL
+======
 
 TOREFL means To REFerence List, as the list of publications you will like to reference later when you will write some latex documents... And since some parts were developed at Paris, you will get the... reference (pun intended)
 
-## Features
+Features
+========
 
 * Non-verbose command line interface
 * Easy management of references with tags, rating etc.
@@ -13,13 +16,14 @@ TOREFL means To REFerence List, as the list of publications you will like to ref
 * Export to bibtex format of either the entire bibliography either only a selection
 * Possibility to edit the metadata from the software
 
-# philosophy
+Philosophy
+==========
 
 This software is meant to respect KISS principles i.e. to be as simple as possible.
 
-To use it, you only need to have a bibliography directory, and put all your pdf in it. The name of the pdf will be the bibtex identifier for using with the `\cite` command. Then, just touch a file with the same name but the `.torefl` extension.
+To use it, you only need to have a bibliography directory, and put all your pdf in it. The name of the pdf will be the bibtex identifier for using with the ``\cite`` command. Then, just touch a file with the same name but the ``.torefl`` extension.
 
-so you should have a file tree like this :
+so you should have a file tree like this ::
 
     biblio
     |--topology
@@ -33,12 +37,12 @@ so you should have a file tree like this :
     |--SuperArticle.pdf
     |--SuperArticle.torefl
 
-# .torefl format
+.torefl format
+==============
 
-This file can be either empty, either contain only the reference in bibtex format, either contain some meta-data (format described below) and the bibtex both separated by a line starting with 16 stars : `****************`
+This file can be either empty, either contain only the reference in bibtex format, either contain some meta-data (format described below) and the bibtex both separated by a line starting with 16 stars : ``****************``
 
-Example:
-
+Example::
 
     #NotRead #Topology @10 
     
@@ -56,89 +60,106 @@ Example:
       ISBN = {9781400881802},
     }
 
-***Note :*** the identifier given in the bibtex will be discarded at export, and replaced by the name of the file without the extension
+**Note :** the identifier given in the bibtex will be discarded at export, and replaced by the name of the file without the extension
 
-## Metadata format
+Metadata format
+---------------
 
 The metadata are basically a comment for yourself of the referenced article, a sum up, a description or whatever you like. You can also specify tags you will be able to search on, and also a rating that has the meaning you want, you will also be able to search on, with comparators like lesser than greater than etc.
 
-### Tags
+Tags
+~~~~
 
-A tag is surrounded by two spaces, and begins with a `#`. It will be converted to CamelCase starting with an uppercase letter. #TAG will become #Tag, #test\_tag will be converted to #TestTag.
+A tag is surrounded by two spaces, and begins with a ``#``. It will be converted to CamelCase starting with an uppercase letter. #TAG will become #Tag, #test\_tag will be converted to #TestTag.
 
-### Rating
+Rating
 
-The rating is surrounded by two spaces it begins by `@` followed by a positive or negative, int or float number. If there are several ratings in the metadata, only the last one will be used, the other will be discarded.
+The rating is surrounded by two spaces it begins by ``@`` followed by a positive or negative, int or float number. If there are several ratings in the metadata, only the last one will be used, the other will be discarded.
 
-### Comment
+Comment
+~~~~~~~
 
 The parser removes all the tags and the ratings, and strip all space before and after the remaining. The remaining is what is called the "comment", or "description". It's user-defined, and you will also be able to search for string appearing in the comments.
 
-## From the previous example
+From the previous example
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In the previous example, the tags are `#NotRead`, `#Topology` and `#Morse`, the rating is `-55.0` (the `@10` being discarded), and the comment is "Presentation of the Morse Theory".
+In the previous example, the tags are ``#NotRead``, ``#Topology`` and ``#Morse``, the rating is ``-55.0`` (the ``@10`` being discarded), and the comment is "Presentation of the Morse Theory".
 
-# Using Torefl
+Using Torefl
+============
 
-To use Torefl, just go to your bibliography root, and type:
+To use Torefl, just go to your bibliography root, and type::
 
     $> torefl
 
-(the `$>` means you are a standard user in your operating system)
+(the ``$>`` means you are a standard user in your operating system)
 
 Then, a command line appears. Here is a list of the commands :
 
-# Command List
+Command List
+============
 
 Each command has a short and a long alias. Different aliases are separated by a coma below.
 
-## l, list
+l, list
+-------
+
+::
 
     torefl>l [ [ [-leg] /path/*/patern/* ] [ #tags ]... [ @[ < | > | <= | >= | = ] ]... [ -bib [ [field] [content] ]... ] [-com [commentSearch] ]...
 
-Lists the entries using or not a filter. There are 3 filters currently, legacy ( `-leg`) (default filter at the begin), bibtex (`-bib`) and comment (`-com`). You can switch between them using the `-xxx` corresponding.
+Lists the entries using or not a filter. There are 3 filters currently, legacy ( ``-leg``) (default filter at the begin), bibtex (``-bib``) and comment (``-com``). You can switch between them using the ``-xxx`` corresponding.
 
 Without arguments, it just lists all the entries in the bibliography
 
 You can combine them at your will, it will do an AND between the results. For a or, just do the filter twice, and use the selections (explained below)
 
-### legacy filter
+legacy filter
+~~~~~~~~~~~~~
 
 Legacy because it is the first filter I did, and I added the other ones after.
 
-The first parameter is a path to look into, using unix glob pattern. Then, you can add tags and priority filters. Tags will filter all articles with the given tags appearing in the `.torefl`.
-Rating start with `@`, then a comparator (left member is the rating of the article, right member is the number to compare) followed by the number to compare to. `@<30` will give all entries with priority lesser than 30.
+The first parameter is a path to look into, using unix glob pattern. Then, you can add tags and priority filters. Tags will filter all articles with the given tags appearing in the ``.torefl``.
+Rating start with ``@``, then a comparator (left member is the rating of the article, right member is the number to compare) followed by the number to compare to. ``@<30`` will give all entries with priority lesser than 30.
 
-### bibtex filter
+bibtex filter
+~~~~~~~~~~~~~
 
-Bibtex filter is a list of pairs `field content`, and will keep only entries with a bibtex containing `content` in the field `field`. You can put several field/content pairs and it will combine them with an AND between the results
+Bibtex filter is a list of pairs ``field content``, and will keep only entries with a bibtex containing ``content`` in the field ``field``. You can put several field/content pairs and it will combine them with an AND between the results
 
-### comment filter
+comment filter
+~~~~~~~~~~~~~~
 
 The comment filter just filters the entries containing all the arguments given to the filter
 
-## o, open
+o, open
+-------
 
     torefl>o <ID|Name>
 
-Opens ID (The blue number when listed using the default formatter) or the name (same identifier than used with \cite, i.e. the file name without extension) with the command given in the configuration key `open_cmd`.
+Opens ID (The blue number when listed using the default formatter) or the name (same identifier than used with \cite, i.e. the file name without extension) with the command given in the configuration key ``open_cmd``.
 
-## ed, edit
+ed, edit
+--------
+
+::
 
    torefl>ed  <ID|Name>
 
-Opens the `.torefl` file corresponding to ID (The blue number when listed using the default formatter) or Name (same identifier than used with \cite, i.e. the file name without extension) with the command given in the configuration key `edit_cmd`, and refresh the database.
+Opens the ``.torefl`` file corresponding to ID (The blue number when listed using the default formatter) or Name (same identifier than used with \cite, i.e. the file name without extension) with the command given in the configuration key ``edit_cmd``, and refresh the database.
 
-## s, sel, selection
+s, sel, selection
+-----------------
 
 This command permits to work with selections. Its syntax is just a mind f***. Any suggestion to improve it is definitively welcome !!!
 
     torefl>s <register> <operator> [register]
 
-`register` can be any register name. `operator` is an operator amoung `|=` (union), `&=` (intersection), `^=` (symetric difference), `-=` (difference) and `=` (copy).
-The left member is assigned the result of the operation. The right member can be either empty (it will use the result of the previous list call) either `0` (the empty set), either another register name.
+``register`` can be any register name. ``operator`` is an operator amoung ``|=`` (union), ``&=`` (intersection), ``^=`` (symetric difference), ``-=`` (difference) and ``=`` (copy).
+The left member is assigned the result of the operation. The right member can be either empty (it will use the result of the previous list call) either ``0`` (the empty set), either another register name.
 
-To do a 'OR' filter, one can do :
+To do a 'OR' filter, one can do ::
 
     torefl>l [filter]
     torefl>s a =
@@ -146,18 +167,20 @@ To do a 'OR' filter, one can do :
     torefl>s a |=
     torefl>ls a
 
-## ls
+ls
+---
 
-List Selection
+List Selection ::
 
     torefl>ls <register>
 
-List the content of `register`
+List the content of ``register``
 
-## e, export
+e, export
+---------
 
     torefl>e -bib <filename> [register]
 
-Exports in bibtex format the selection in register if given, else the selection of the previous call to `list`. You have to type the `-bib` because other exporters could be supported in the future (like an html exporter or other reference list formats)
+Exports in bibtex format the selection in register if given, else the selection of the previous call to ``list``. You have to type the ``-bib`` because other exporters could be supported in the future (like an html exporter or other reference list formats)
 
 
