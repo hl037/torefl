@@ -73,6 +73,7 @@ Tags
 A tag is surrounded by two spaces, and begins with a ``#``. It will be converted to CamelCase starting with an uppercase letter. #TAG will become #Tag, #test\_tag will be converted to #TestTag.
 
 Rating
+~~~~~~
 
 The rating is surrounded by two spaces it begins by ``@`` followed by a positive or negative, int or float number. If there are several ratings in the metadata, only the last one will be used, the other will be discarded.
 
@@ -136,6 +137,8 @@ The comment filter just filters the entries containing all the arguments given t
 o, open
 -------
 
+::
+
     torefl>o <ID|Name>
 
 Opens ID (The blue number when listed using the default formatter) or the name (same identifier than used with \cite, i.e. the file name without extension) with the command given in the configuration key ``open_cmd``.
@@ -153,6 +156,8 @@ s, sel, selection
 -----------------
 
 This command permits to work with selections. Its syntax is just a mind f***. Any suggestion to improve it is definitively welcome !!!
+
+::
 
     torefl>s <register> <operator> [register]
 
@@ -178,6 +183,8 @@ List the content of ``register``
 
 e, export
 ---------
+
+::
 
     torefl>e -bib <filename> [register]
 
