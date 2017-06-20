@@ -7,7 +7,7 @@ from typing import List, Tuple
 from torefl.parser import *
 from torefl.core import Entry
 
-__copyright__ = "Copyright 2007, Léo Flaventin Hauchecorne"
+__copyright__ = "Copyright 2017, Léo Flaventin Hauchecorne"
 __license__ = "GPLv3"
 
 class BibFilter(object):
@@ -50,9 +50,9 @@ class CommentFilter(object):
 class PathFilter(object):
 	__slots__ = ('re',)
 	def __init__(self, path):
-		self.re = re.compile(fnmatch.translate(path))
+		self.re = re.compile(fnmatch.translate(path.lower()))
 	def __call__(self, entry: Entry):
-		return bool(self.re.fullmatch(entry.pathstr()))
+		return bool(self.re.fullmatch(entry.fullpathstr().lower()))
 
 class TagFilter(object):
 	__slots__ = ('tag',)

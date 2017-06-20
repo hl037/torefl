@@ -2,7 +2,7 @@
 from colorama import Fore as _F, Back as _B, Style as _S, init as _colorama_init
 from torefl.core import Entry
 
-__copyright__ = "Copyright 2007, Léo Flaventin Hauchecorne"
+__copyright__ = "Copyright 2017, Léo Flaventin Hauchecorne"
 __license__ = "GPLv3"
 
 def formatEntry(e:Entry):

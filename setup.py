@@ -3,7 +3,7 @@ import sys
 
 from setuptools import setup, find_packages
 
-__copyright__ = "Copyright 2007, Léo Flaventin Hauchecorne"
+__copyright__ = "Copyright 2017, Léo Flaventin Hauchecorne"
 __license__ = "GPLv3"
 
 def read_file(name):
@@ -26,7 +26,7 @@ if sys.version_info < (3,):
 
 setup(
     name='torefl',
-    version='1.0b1',
+    version='1.0b2',
     description='Software to manage references',
     long_description=LONG_DESC,
     author='hl037',

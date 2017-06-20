@@ -21,7 +21,7 @@ from torefl.exporters import BibtexExporter
 from torefl.config import conf, write as writeConf
 from torefl.parser import parseEntry, parseBase
 
-__copyright__ = "Copyright 2007, Léo Flaventin Hauchecorne"
+__copyright__ = "Copyright 2017, Léo Flaventin Hauchecorne"
 __license__ = "GPLv3"
 
 class _listHack(list):
@@ -338,7 +338,11 @@ def walkTorefl(p):
 	l = [p]
 	current = []
 	for _current, dirs, files in os.walk(p):
-		current = os.path.relpath(_current, p).split(os.sep)
+		rel = os.path.relpath(_current, p)
+		if rel == '.':
+			current = []
+		else:
+			current = rel.split(os.sep)
 		for f in files:
 			if f.endswith('.torefl'):
 				name = f[:-len(EXT)]

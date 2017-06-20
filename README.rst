@@ -15,6 +15,7 @@ Features
 * Memorization of the selection you made (you can assign the result of a filter to sort of variable called register to match vim vocabulary)
 * Export to bibtex format of either the entire bibliography either only a selection
 * Possibility to edit the metadata from the software
+* Easy to extend (create other formatters, exports, filter etc.
 
 Philosophy
 ==========
@@ -70,17 +71,17 @@ The metadata are basically a comment for yourself of the referenced article, a s
 Tags
 ~~~~
 
-A tag is surrounded by two spaces, and begins with a ``#``. It will be converted to CamelCase starting with an uppercase letter. #TAG will become #Tag, #test\_tag will be converted to #TestTag.
+A tag is surrounded by two spaces, and begins with a ``#``. It will be converted to CamelCase starting with an uppercase letter. ``#TAG`` will become ``#Tag``, ``#test_tag`` will be converted to ``#TestTag``.
 
 Rating
 ~~~~~~
 
-The rating is surrounded by two spaces it begins by ``@`` followed by a positive or negative, int or float number. If there are several ratings in the metadata, only the last one will be used, the other will be discarded.
+The rating is surrounded by two spaces it begins by ``@`` followed by a positive or negative, int or float number. If there are several ratings in the metadata, only the last one will be used, the others will be discarded.
 
 Comment
 ~~~~~~~
 
-The parser removes all the tags and the ratings, and strip all space before and after the remaining. The remaining is what is called the "comment", or "description". It's user-defined, and you will also be able to search for string appearing in the comments.
+The parser removes all the tags and the ratings, and strip all spaces before and after the remaining. The remaining is what is called the "comment", or "description". It's user-defined, and you will also be able to search for string appearing in the comments.
 
 From the previous example
 ~~~~~~~~~~~~~~~~~~~~~~~~~

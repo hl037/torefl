@@ -3,7 +3,7 @@ import configparser
 import os.path
 from collections import OrderedDict
 
-__copyright__ = "Copyright 2007, Léo Flaventin Hauchecorne"
+__copyright__ = "Copyright 2017, Léo Flaventin Hauchecorne"
 __license__ = "GPLv3"
 
 _dirs = appdirs.AppDirs('torefl', 'hl037')

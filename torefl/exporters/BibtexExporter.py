@@ -5,7 +5,7 @@ import copy
 from torefl import Entry
 from typing import Iterable
 
-__copyright__ = "Copyright 2007, Léo Flaventin Hauchecorne"
+__copyright__ = "Copyright 2017, Léo Flaventin Hauchecorne"
 __license__ = "GPLv3"
 
 def _getBib(e:Entry):

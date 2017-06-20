@@ -3,7 +3,7 @@ import argparse
 from torefl.core import *
 import torefl.shell as shell
 
-__copyright__ = "Copyright 2007, Léo Flaventin Hauchecorne"
+__copyright__ = "Copyright 2017, Léo Flaventin Hauchecorne"
 __license__ = "GPLv3"
 
 def main():

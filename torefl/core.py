@@ -5,7 +5,7 @@ from sortedcontainers import SortedListWithKey as slist, SortedSet as sset
 from typing import List, Tuple
 from functools import reduce
 
-__copyright__ = "Copyright 2007, Léo Flaventin Hauchecorne"
+__copyright__ = "Copyright 2017, Léo Flaventin Hauchecorne"
 __license__ = "GPLv3"
 
 class Existing(RuntimeError):
@@ -126,7 +126,16 @@ class Entry(object):
 	
 	def pathstr(self):
 		if self._location:
-			return self._location.pathstr()
+			return '/' + self._location.pathstr()
+		return ''
+	
+	def fullpathstr(self):
+		if self._location:
+			s = self._location.pathstr()
+			if s == '':
+				return '/' + self.name
+			else:
+				return '/' + s + '/' + self.name
 		return ''
 	
 	def toDict(self):
@@ -173,7 +182,7 @@ class EntryRepo(object):
 			self._path = []
 		else:
 			self._path = self.parent.path() + [self.name]
-		self._pathstr = '/'+'/'.join(self._path)
+		self._pathstr = '/'.join(self._path)
 		self._pathChanged = False
 	
 	def path(self):
