@@ -17,7 +17,7 @@ def read_file(name):
         print("could not read %r" % name)
         f.close()
 
-LONG_DESC = read_file('README.rst') + '\n\n' + read_file('HISTORY.rst')
+LONG_DESC = read_file('README.rst')
 
 EXTRAS = {}
 
@@ -26,7 +26,7 @@ if sys.version_info < (3,):
 
 setup(
     name='torefl',
-    version='1.0b0',
+    version='1.0b1',
     description='Software to manage references',
     long_description=LONG_DESC,
     author='hl037',
