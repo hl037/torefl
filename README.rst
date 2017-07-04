@@ -187,8 +187,8 @@ e, export
 
 ::
 
-    torefl>e -bib <filename> [register]
+    torefl>e bib <filename> [register]
 
-Exports in bibtex format the selection in register if given, else the selection of the previous call to ``list``. You have to type the ``-bib`` because other exporters could be supported in the future (like an html exporter or other reference list formats)
+Exports in bibtex format the selection in register if given, else the selection of the previous call to ``list``. You have to type the ``bib`` because other exporters could be supported in the future (like an html exporter or other reference list formats)
 
 
