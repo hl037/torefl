@@ -26,7 +26,7 @@ if sys.version_info < (3,):
 
 setup(
     name='torefl',
-    version='1.0b2',
+    version='1.0b3',
     description='Software to manage references',
     long_description=LONG_DESC,
     author='hl037',

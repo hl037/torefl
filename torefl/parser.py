@@ -3,6 +3,7 @@ import re
 import bibtexparser
 from torefl import Entry
 
+from colorama import Fore as _F, Back as _B, Style as _S, init as _colorama_init
 
 __copyright__ = "Copyright 2017, Léo Flaventin Hauchecorne"
 __license__ = "GPLv3"
@@ -66,6 +67,8 @@ def parseEntry(f, name, pdf_path):
 		comment.append(li)
 	for li in lines:
 		bibtex.append(li)
+	if not bibtex: #if there is no separator, then we consider the file as a bibtex...
+		bibtex, comment = comment, bibtex
 	return createEntry(name, pdf_path, comment, bibtex)
 
 def createEntry(name, pdf_path, comment, bibtex):
@@ -76,7 +79,7 @@ def createEntry(name, pdf_path, comment, bibtex):
 		if db.entries:
 			parsedBib = db.entries[0]
 		else:
-			print(F.RED, 'No citation for ', name, F.RESET, sep='')
+			print(_F.RED, 'No citation for ', name, _F.RESET, sep='')
 			parsedBib = None
 	except Exception as e:
 		print('EX :', e.__class__.__name__)
@@ -88,8 +91,8 @@ def createEntry(name, pdf_path, comment, bibtex):
 class UnsupportedVersion(RuntimeError):
 	pass
 
-base000_line_re = re.compile(r'(?P<ID>\d+):(?P<name>.+):(?P<title>.*)')
-base000_register_re = re.compile(r'(?P<ID>[^:]+):(?P<sel>(\d+(\s+\d+)*)?)')
+base000_line_re = re.compile(r'(?P<ID>\d+):(?P<name>.+?):(?P<title>.*)')
+base000_register_re = re.compile(r'(?P<ID>[^:]+?):(?P<sel>(\d+(\s+\d+)*)?)')
 
 def parseBase000(it):
 	nb = int(next(it))

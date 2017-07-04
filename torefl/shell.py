@@ -375,7 +375,6 @@ def _update(args):
 	o = args.file + EXT_BASE
 	with open(o, 'r', encoding='utf-8') as f:
 		d1, d2, n, r = parseBase(f)
-	#print('R', [ (n, list(m)) for n, m in r])
 	_torefl.reserve(n)
 	l = []
 	for e, path in walkTorefl(os.getcwd()):
