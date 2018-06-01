@@ -366,7 +366,7 @@ def _create(args):
 		_writeTorefl(of, _torefl, {})
 	#with open('.'+o+'.cache', 'w', encoding='utf-8') as of:
 	#	_writeCache(of, _torefl)
-	return o, []
+	return o, {}
 
 def _update(args):
 	global _torefl
